@@ -1,8 +1,4 @@
-# Deploying a Flask API
-
-This is the project starter repo for the fourth course in the [Udacity Full Stack Nanodegree](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004): Server Deployment, Containerization, and Testing.
-
-The goal is to deploy a Flask API to a Kubernetes cluster using Docker, AWS EKS, CodePipeline, and CodeBuild.
+# Deploy a Flask API to a Kubernetes cluster using Docker, AWS EKS, CodePipeline, and CodeBuild
 
 The Flask app that will be used for this project consists of a simple API with three endpoints:
 
@@ -12,7 +8,17 @@ The Flask app that will be used for this project consists of a simple API with t
 
 The app relies on a secret set as the environment variable `JWT_SECRET` to produce a JWT. The built-in Flask server is adequate for local development, but not production, so you will be using the production-ready [Gunicorn](https://gunicorn.org/) server when deploying the app.
 
-# Basic local test
+# Project Overview
+
+1. Local Test
+2. Write a Dockerfile for a simple Flask API
+3. Build and test the container locally
+4. Create an EKS cluster
+5. Store a secret using parameter store
+5. Create a CodePipeline pipeline triggered by GitHub checkins
+6. Create a CodeBuild stage which will build, test, and deploy your code
+
+# Local Test
 
 ```bash
 #------------------------------------------------------------------------------
@@ -39,6 +45,8 @@ flask run --reload
 #------------------------------------------------------------------------------
 # Test
 #------------------------------------------------------------------------------
+curl -X GET http://0.0.0.0:8080
+# "Healthy"
 
 #/auth endpoint
 export TOKEN=`curl -d '{"email":"test@mail.com","password":"asso123"}' -H "Content-Type: application/json" -X POST localhost:8080/auth  | jq -r '.token'`
@@ -64,17 +72,7 @@ curl --request GET 'http://127.0.0.1:8080/contents' -H "Authorization: Bearer ${
 
 ```
 
-# Project Overview
-
-1. local Test
-2. Write a Dockerfile for a simple Flask API
-3. Build and test the container locally
-4. Create an EKS cluster
-5. Store a secret using parameter store
-5. Create a CodePipeline pipeline triggered by GitHub checkins
-6. Create a CodeBuild stage which will build, test, and deploy your code
-
-## Dependencies
+# Dependencies
 
 - Docker Engine
     - Installation instructions for all OSes can be found [here](https://docs.docker.com/install/).
