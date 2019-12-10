@@ -72,6 +72,15 @@ curl --request GET 'http://127.0.0.1:8080/contents' -H "Authorization: Bearer ${
 
 ```
 
+## Testing
+To run the tests, run
+
+```bash
+
+python3 test_main.py
+
+```
+
 # Dependencies
 
 - Docker Engine

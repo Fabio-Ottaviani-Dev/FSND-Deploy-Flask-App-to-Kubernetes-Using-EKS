@@ -3,7 +3,7 @@ Tests for jwt flask app.
 '''
 import os
 import json
-import pytest
+import pytest # see: https://docs.pytest.org/en/latest/contents.html
 
 import main
 
@@ -20,8 +20,6 @@ def client():
 
     yield client
 
-
-
 def test_health(client):
     response = client.get('/')
     assert response.status_code == 200
@@ -29,11 +27,15 @@ def test_health(client):
 
 
 def test_auth(client):
-    body = {'email': EMAIL,
-            'password': PASSWORD}
-    response = client.post('/auth', 
-                           data=json.dumps(body),
-                           content_type='application/json')
+    body = {
+        'email': EMAIL,
+        'password': PASSWORD
+    }
+    response = client.post(
+        '/auth',
+        data=json.dumps(body),
+        content_type='application/json'
+    )
 
     assert response.status_code == 200
     token = response.json['token']
