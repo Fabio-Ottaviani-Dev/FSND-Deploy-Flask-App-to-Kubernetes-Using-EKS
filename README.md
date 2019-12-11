@@ -49,26 +49,12 @@ curl -X GET http://0.0.0.0:8080
 # "Healthy"
 
 #/auth endpoint
-export TOKEN=`curl -d '{"email":"test@mail.com","password":"asso123"}' -H "Content-Type: application/json" -X POST localhost:8080/auth  | jq -r '.token'`
-
-#   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-#                                  Dload  Upload   Total   Spent    Left  Speed
-# 100   224  100   178  100    46   4818   1245 --:--:-- --:--:-- --:--:--  4810
+export TOKEN=`curl -d '{"email":"wolf@thedoor.com","password":"huff-puff"}' -H "Content-Type: application/json" -X POST localhost:8080/auth  | jq -r '.token'`
 
  echo $TOKEN
-# eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzY3MTAzNTIsIm5iZiI6MTU3NTUwMDc1MiwiZW1haWwiOiJ0ZXN0QG1haWwuY29tIn0.xqT8qMZVGwLfDiO5354I1sIOZTV4XET7LaIXiqZXjog
 
 # /contents endpoint
 curl --request GET 'http://127.0.0.1:8080/contents' -H "Authorization: Bearer ${TOKEN}" | jq .
-
-#   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-#                                  Dload  Upload   Total   Spent    Left  Speed
-# 100    75  100    75    0     0   2793      0 --:--:-- --:--:-- --:--:--  2884
-# {
-#   "email": "test@mail.com",
-#   "exp": 1576709954,
-#   "nbf": 1575500354
-# }
 
 ```
 
