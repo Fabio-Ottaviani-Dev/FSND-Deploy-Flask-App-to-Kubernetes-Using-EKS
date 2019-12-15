@@ -32,7 +32,7 @@ phases:
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
       - kubectl apply -f simple_jwt_api.yml
-      - pip3 install --upgrade
+      - pip3 install --upgrade pytest
       - python3 -m pytest test_main.py
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
       - pwd
