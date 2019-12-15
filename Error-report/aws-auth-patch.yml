@@ -3,7 +3,7 @@ data:
   mapRoles: |
     - groups:
       - system:masters
-      rolearn: arn:aws:iam::617952380396:role/eksctl-simple-jwt-api-nodegroup-n-NodeInstanceRole-TNOWPAMBZZ2R
+      rolearn: arn:aws:iam::617952380396:role/UdacityFlaskDeployCBKubectlRole
       username: build
   mapUsers: |
     []
