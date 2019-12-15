@@ -1,24 +1,52 @@
-[Container] 2019/12/15 05:20:21 Running command export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration') 
- 
-[Container] 2019/12/15 05:20:21 Running command aws eks update-kubeconfig --name $EKS_CLUSTER_NAME 
+[Container] 2019/12/15 05:52:22 Running command aws eks update-kubeconfig --name $EKS_CLUSTER_NAME 
 Added new context arn:aws:eks:us-west-2:617952380396:cluster/simple-jwt-api to /root/.kube/config 
  
-[Container] 2019/12/15 05:20:22 Running command echo ${CREDENTIALS} 
-{ "Credentials": { "Expiration": "2019-12-15T05:35:21Z", "SecretAccessKey": "gEyW6vLsGwJmbVCFpB4fbdsC3cZaJPECSMUwkJH5", "AccessKeyId": "ASIAY7YGVAXWCZUFOYEY", "SessionToken": "FwoGZXIvYXdzEA8aDH3c4j/vNi6Ov7GE4CLTAePovwgASI2/9y5DYAIVeE8HFrN6O0RtzfDBMUMv2PM5qNWEHV4+oyD8hvR6ctpJWgVNOTtK/xDuGvg9/lyDhL5rNcSZPOtqUAdvnm4nGC8Q+C0edJLrErFOxcXLjLZuo00rY6YnWIVxjemvJnmQ9hMzNzR/GMRd7Yjuaqe86TBzShIAaXvUkH3yW/KoO6rj6xgNEA3/8X1s6CNsQz6ndXip/sWOqAyHw9ZOHn0qLFUk/VOOZCDIJgnJJLmY6wFs4TG9frsXepbyS+DMVoTR7W/wwwsolYXX7wUyS8CZ4s7D03jboOAv5yGw3nz9YW8/82MwKxsQPyc3UfYij5eSaCX1z8+XVMYks+aN6FH+mCo26u264xi2kN45vOYbAG0/Q5RgWOmKRw==" }, "AssumedRoleUser": { "Arn": "arn:aws:sts::617952380396:assumed-role/UdacityFlaskDeployCBKubectlRole/codebuild-kubectl", "AssumedRoleId": "AROAY7YGVAXWMHAMCTG22:codebuild-kubectl" } } 
+[Container] 2019/12/15 05:52:22 Running command echo ${CREDENTIALS} 
+{ "Credentials": { "SessionToken": "FwoGZXIvYXdzEA8aDOUfX8/R52qcZ14YsCLTAfVhcx6GeHx7lnwEjjBhdJb4rPfpbZYZZ/HvVWjw7XevULMoacAjFSQdTpwwOMi/t/v+yT+iuPZ4GgftTJ53pfLfPL3Lgx8vWihm3A/+mlUBLDuWtyQsVMukZsuTmF2HW+QZQLu7u1VdaWjwoT7rj9bHFqPM9zW3ggTLDLtur3r3fhM8yrTQ7f5ccA9ZVp6a8ZBwn+fPKRZe6dbu+zle0S5BkH3d1um2iOxVjLcECfCO8avEC5Q3Qx+BDWCPdRVIUrFzmgOr80y1c/skmAcHV2EYIbQolZTX7wUyS5i8vxeM9AYdA0ju5mfsNbhaBQ4RQHOjDjUDapDC7F6qXdtkGhMBMk0B3AOY9cTyBhIT3B6r+YmKpDWgxFmaEjDEvF3gYbQMFYZMKQ==", "Expiration": "2019-12-15T06:07:21Z", "SecretAccessKey": "1LTQFxb2kwjZ1nHxiu/U0bl/BGzgQEcMzmA4lJ+/", "AccessKeyId": "ASIAY7YGVAXWOOGC225I" }, "AssumedRoleUser": { "Arn": "arn:aws:sts::617952380396:assumed-role/UdacityFlaskDeployCBKubectlRole/codebuild-kubectl", "AssumedRoleId": "AROAY7YGVAXWMHAMCTG22:codebuild-kubectl" } } 
  
-[Container] 2019/12/15 05:20:22 Running command kubectl apply -f simple_jwt_api.yml 
+[Container] 2019/12/15 05:52:22 Running command kubectl config view --minify 
+apiVersion: v1 
+clusters: 
+- cluster: 
+    certificate-authority-data: DATA+OMITTED 
+    server: https://359950F321120100AEAFCA756FDBE33F.yl4.us-west-2.eks.amazonaws.com 
+  name: arn:aws:eks:us-west-2:617952380396:cluster/simple-jwt-api 
+contexts: 
+- context: 
+    cluster: arn:aws:eks:us-west-2:617952380396:cluster/simple-jwt-api 
+    user: arn:aws:eks:us-west-2:617952380396:cluster/simple-jwt-api 
+  name: arn:aws:eks:us-west-2:617952380396:cluster/simple-jwt-api 
+current-context: arn:aws:eks:us-west-2:617952380396:cluster/simple-jwt-api 
+kind: Config 
+preferences: {} 
+users: 
+- name: arn:aws:eks:us-west-2:617952380396:cluster/simple-jwt-api 
+  user: 
+    exec: 
+      apiVersion: client.authentication.k8s.io/v1alpha1 
+      args: 
+      - --region 
+      - us-west-2 
+      - eks 
+      - get-token 
+      - --cluster-name 
+      - simple-jwt-api 
+      command: aws 
+      env: null 
+ 
+[Container] 2019/12/15 05:52:22 Running command kubectl apply -f simple_jwt_api.yml 
 unable to recognize "simple_jwt_api.yml": Unauthorized 
 unable to recognize "simple_jwt_api.yml": Unauthorized 
  
-[Container] 2019/12/15 05:20:24 Command did not exit successfully kubectl apply -f simple_jwt_api.yml exit status 1 
-[Container] 2019/12/15 05:20:24 Phase complete: POST_BUILD State: FAILED 
-[Container] 2019/12/15 05:20:24 Phase context status code: COMMAND_EXECUTION_ERROR Message: Error while executing command: kubectl apply -f simple_jwt_api.yml. Reason: exit status 1 
-[Container] 2019/12/15 05:20:24 Expanding base directory path: . 
-[Container] 2019/12/15 05:20:24 Assembling file list 
-[Container] 2019/12/15 05:20:24 Expanding . 
-[Container] 2019/12/15 05:20:24 Expanding file paths for base directory . 
-[Container] 2019/12/15 05:20:24 Assembling file list 
-[Container] 2019/12/15 05:20:24 Expanding build.json 
-[Container] 2019/12/15 05:20:24 Skipping invalid file path build.json 
-[Container] 2019/12/15 05:20:24 Phase complete: UPLOAD_ARTIFACTS State: FAILED 
-[Container] 2019/12/15 05:20:24 Phase context status code: CLIENT_ERROR Message: no matching artifact paths found 
+[Container] 2019/12/15 05:52:24 Command did not exit successfully kubectl apply -f simple_jwt_api.yml exit status 1 
+[Container] 2019/12/15 05:52:24 Phase complete: POST_BUILD State: FAILED 
+[Container] 2019/12/15 05:52:24 Phase context status code: COMMAND_EXECUTION_ERROR Message: Error while executing command: kubectl apply -f simple_jwt_api.yml. Reason: exit status 1 
+[Container] 2019/12/15 05:52:24 Expanding base directory path: . 
+[Container] 2019/12/15 05:52:24 Assembling file list 
+[Container] 2019/12/15 05:52:24 Expanding . 
+[Container] 2019/12/15 05:52:24 Expanding file paths for base directory . 
+[Container] 2019/12/15 05:52:24 Assembling file list 
+[Container] 2019/12/15 05:52:24 Expanding build.json 
+[Container] 2019/12/15 05:52:24 Skipping invalid file path build.json 
+[Container] 2019/12/15 05:52:24 Phase complete: UPLOAD_ARTIFACTS State: FAILED 
+[Container] 2019/12/15 05:52:24 Phase context status code: CLIENT_ERROR Message: no matching artifact paths found 
