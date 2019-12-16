@@ -1,4 +1,4 @@
-Error-report/error-private.log
+/conf
 
 # ---------------------
 examples/
@@ -28,7 +28,6 @@ htmlcov/
 .coverage
 .coverage.*
 *,cover
-
 # Direnv
 .envrc
 .direnv
